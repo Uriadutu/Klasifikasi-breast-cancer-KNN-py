@@ -8,13 +8,13 @@ import time
 
 # Panggil Data set Sesuai path
 df = pd.read_csv('klasifikasi/breast-cancer.csv')
+print(df.head(286))
 
 label_encoder = LabelEncoder()
 
 # Melakukan encoding pada fitur-fitur kategorikal
 categorical_cols = ['age', 'menopause', 'tumor-size', 'inv-nodes', 'node-caps', 'breast', 'breast-quad', 'irradiat']
 
-print(df.head(286))
 for col in categorical_cols:
     df[col] = label_encoder.fit_transform(df[col])
 
@@ -34,7 +34,7 @@ for test_size in test_sizes:
     train_percentage = int(train_size * 100)
     test_percentage = int(test_size * 100)
     
-    print(f"{train_percentage}/{test_percentage}:")
+    print(f"Split Percentage {train_percentage}%/{test_percentage}%:")
     
     # Pembagian Data menjadi set pelatihan dan pengujian
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=42)
